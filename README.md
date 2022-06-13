@@ -36,13 +36,35 @@
   - loadUserByUsername : username 을 받아 유저 정보를 반환한다
 
 ## JWT 와 Spring Security 를 이용한 인증 절차
-
+- ```implementation 'io.jsonwebtoken:jjwt:0.9.1'``` build.gradle 에 추가
+<br></br>
 - Spring Security 를 커스텀화 하기 위해 @EnableWebSecurity 어노테이션을 포함한 WebSecurityConfigurerAdapter 클래스를 선언한다
   - authentication manager 에게 정확한 provider 를 설정한다
 ```C
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 -- 생략 --
+}
+```
+<br></br>
+- JwtAuthenticationFilter 생성
+```C
+public class JwtAuthenticationFilter extends GenericFilterBean {
+  @Override
+  public void doFilter() {
+    --- 생략 ---
+  }
+}
+```
+<br></br>
+- JwtTokenProvider 생성
+```C
+public class JwtTokenProvider {
+  // 토큰 생성
+  // 토큰에서 정보 조회
+  // Request Header 에서 토큰 값 가져오기
+  // 토큰 유효성 검사
+  // UserDetails 생성 (UserDetailsService 의 loadUserByUsername 사용)
 }
 ```
 <br></br>
@@ -54,13 +76,6 @@ public interface UserDetailsService {
   }
 }
 ```
-<br></br>
-- 
-
-
-
-
-
-
-### Reference
+## Reference
 https://www.toptal.com/spring/spring-security-tutorial
+https://webfirewood.tistory.com/115
